@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 340" role="img">
+  <title>The RAG pipeline: index documents once as vectors; at question time embed the query, retrieve the top-k most similar chunks and hand them to the LLM</title>
+  <style>
+    text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; fill: #0b0b0b; }
+    .t { font-size: 13.5px; font-weight: 600; }
+    .s { font-size: 12px; fill: #52514e; }
+    .env { font-size: 13px; font-weight: 600; fill: #52514e; letter-spacing: 0.5px; }
+    .cap { font-size: 13px; fill: #52514e; font-style: italic; }
+  </style>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#52514e"/>
+    </marker>
+  </defs>
+  <rect width="920" height="340" fill="#fcfcfb"/>
+
+  <!-- indexing row -->
+  <text x="40" y="46" class="env">INDEXING · once</text>
+  <rect x="40" y="62" width="130" height="48" rx="8" fill="#eef1f5" stroke="#64748b"/>
+  <text x="105" y="82" text-anchor="middle" class="t">corpus docs</text>
+  <text x="105" y="100" text-anchor="middle" class="s">12 abstracts</text>
+  <line x1="170" y1="86" x2="226" y2="86" stroke="#52514e" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="230" y="62" width="170" height="48" rx="8" fill="#e6eff7" stroke="#0056a7"/>
+  <text x="315" y="82" text-anchor="middle" class="t">embedding model</text>
+  <text x="315" y="100" text-anchor="middle" class="s">text -&gt; vector</text>
+  <line x1="400" y1="86" x2="431" y2="86" stroke="#52514e" stroke-width="1.5" marker-end="url(#arr)"/>
+  <!-- vector DB cylinder -->
+  <path d="M436,74 L436,116 A66,11 0 0,0 568,116 L568,74" fill="#fdf3dc" stroke="#eda100"/>
+  <ellipse cx="502" cy="74" rx="66" ry="11" fill="#fdf3dc" stroke="#eda100"/>
+  <text x="502" y="99" text-anchor="middle" class="t">vector DB</text>
+  <text x="502" y="116" text-anchor="middle" class="s">ChromaDB</text>
+
+  <!-- query row -->
+  <text x="40" y="186" class="env">QUERY · every question</text>
+  <rect x="40" y="202" width="120" height="48" rx="8" fill="#eef1f5" stroke="#64748b"/>
+  <text x="100" y="230" text-anchor="middle" class="t">question</text>
+  <line x1="160" y1="226" x2="196" y2="226" stroke="#52514e" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="200" y="202" width="150" height="48" rx="8" fill="#e6eff7" stroke="#0056a7"/>
+  <text x="275" y="222" text-anchor="middle" class="t">embedding</text>
+  <text x="275" y="240" text-anchor="middle" class="s">same vector space</text>
+  <line x1="350" y1="226" x2="386" y2="226" stroke="#52514e" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="390" y="202" width="160" height="48" rx="8" fill="#f0efec" stroke="#52514e"/>
+  <text x="470" y="222" text-anchor="middle" class="t">similarity search</text>
+  <text x="470" y="240" text-anchor="middle" class="s">nearest neighbours</text>
+  <line x1="502" y1="132" x2="480" y2="198" stroke="#52514e" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arr)"/>
+  <line x1="550" y1="226" x2="586" y2="226" stroke="#52514e" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="590" y="202" width="130" height="48" rx="8" fill="#e3f6ee" stroke="#1baf7a"/>
+  <text x="655" y="222" text-anchor="middle" class="t">top-k chunks</text>
+  <text x="655" y="240" text-anchor="middle" class="s">into the context</text>
+  <line x1="720" y1="226" x2="756" y2="226" stroke="#52514e" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="760" y="202" width="120" height="48" rx="8" fill="#e6eff7" stroke="#0056a7"/>
+  <text x="820" y="222" text-anchor="middle" class="t">LLM</text>
+  <text x="820" y="240" text-anchor="middle" class="s">cited answer</text>
+
+  <text x="460" y="298" text-anchor="middle" class="cap">Index once, retrieve at question time: only the k most similar chunks enter the (paid) context window.</text>
+  <text x="460" y="318" text-anchor="middle" class="cap">Same pattern at scale: swap ChromaDB for FAISS, pgvector or Pinecone.</text>
+</svg>

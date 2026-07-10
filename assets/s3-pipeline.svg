@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 400" role="img">
+  <title>The end-to-end workshop pipeline: an orchestrator delegates to a researcher (with MCP tools) and a writer, reusing previous reports from persistent ChromaDB memory</title>
+  <style>
+    text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; fill: #0b0b0b; }
+    .t { font-size: 13.5px; font-weight: 600; }
+    .s { font-size: 12px; fill: #52514e; }
+    .m { font-size: 12px; fill: #898781; }
+    .cap { font-size: 13px; fill: #52514e; font-style: italic; }
+  </style>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#52514e"/>
+    </marker>
+    <marker id="arrb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect width="920" height="400" fill="#fcfcfb"/>
+
+  <!-- top flow -->
+  <rect x="30" y="90" width="120" height="46" rx="8" fill="#eef1f5" stroke="#64748b"/>
+  <text x="90" y="118" text-anchor="middle" class="t">question</text>
+  <line x1="150" y1="113" x2="206" y2="113" stroke="#64748b" stroke-width="1.8" marker-end="url(#arrb)"/>
+
+  <rect x="210" y="76" width="190" height="74" rx="10" fill="#e6eff7" stroke="#0056a7" stroke-width="1.5"/>
+  <text x="305" y="100" text-anchor="middle" class="t">ORCHESTRATOR</text>
+  <text x="305" y="120" text-anchor="middle" class="s">checks memory first,</text>
+  <text x="305" y="136" text-anchor="middle" class="s">delegates, saves</text>
+
+  <line x1="400" y1="113" x2="776" y2="113" stroke="#64748b" stroke-width="1.8" marker-end="url(#arrb)"/>
+  <rect x="780" y="90" width="110" height="46" rx="8" fill="#eef1f5" stroke="#64748b"/>
+  <text x="835" y="118" text-anchor="middle" class="t">report</text>
+
+  <!-- memory -->
+  <path d="M600,190 L600,246 A70,11 0 0,0 740,246 L740,190" fill="#fdf3dc" stroke="#eda100"/>
+  <ellipse cx="670" cy="190" rx="70" ry="11" fill="#fdf3dc" stroke="#eda100"/>
+  <text x="670" y="222" text-anchor="middle" class="t">persistent memory</text>
+  <text x="670" y="240" text-anchor="middle" class="s">ChromaDB · reports</text>
+  <line x1="404" y1="140" x2="622" y2="184" stroke="#52514e" stroke-width="1.5" marker-start="url(#arr)" marker-end="url(#arr)"/>
+  <text x="530" y="150" text-anchor="middle" class="m">save + reuse reports</text>
+
+  <!-- specialists -->
+  <line x1="262" y1="154" x2="238" y2="206" stroke="#52514e" stroke-width="1.5" marker-start="url(#arr)" marker-end="url(#arr)"/>
+  <line x1="348" y1="154" x2="440" y2="206" stroke="#52514e" stroke-width="1.5" marker-start="url(#arr)" marker-end="url(#arr)"/>
+  <text x="330" y="186" text-anchor="middle" class="m">delegates · agent-as-tool</text>
+
+  <rect x="150" y="210" width="170" height="64" rx="8" fill="#e6eff7" stroke="#0056a7"/>
+  <text x="235" y="236" text-anchor="middle" class="t">RESEARCHER</text>
+  <text x="235" y="256" text-anchor="middle" class="s">searches via MCP</text>
+
+  <rect x="380" y="210" width="170" height="64" rx="8" fill="#e6eff7" stroke="#0056a7"/>
+  <text x="465" y="236" text-anchor="middle" class="t">WRITER</text>
+  <text x="465" y="256" text-anchor="middle" class="s">drafts the report</text>
+
+  <!-- mcp server -->
+  <line x1="235" y1="274" x2="235" y2="316" stroke="#52514e" stroke-width="1.5" marker-start="url(#arr)" marker-end="url(#arr)"/>
+  <rect x="120" y="320" width="230" height="50" rx="8" fill="#e3f6ee" stroke="#1baf7a"/>
+  <text x="235" y="340" text-anchor="middle" class="t">MCP corpus server</text>
+  <text x="235" y="358" text-anchor="middle" class="s">search_papers · read_paper</text>
+
+  <text x="600" y="330" text-anchor="middle" class="cap">Everything from the course in one system: MCP for tools,</text>
+  <text x="600" y="350" text-anchor="middle" class="cap">agent-as-tool delegation, persistent memory, and (block 2) guardrails + traces.</text>
+</svg>

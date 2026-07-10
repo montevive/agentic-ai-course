@@ -1,0 +1,14 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+chroma_db/
+.mem0/
+pipeline_memory/
+nat_workflow.yaml
+.logfire/
+.DS_Store
+*.egg-info/
+.pytest_cache/

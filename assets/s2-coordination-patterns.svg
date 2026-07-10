@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 340" role="img">
+  <title>The three coordination patterns: sequential pipeline, hierarchical supervisor, consensual committee</title>
+  <style>
+    text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; fill: #0b0b0b; }
+    .h { font-size: 15px; font-weight: 700; }
+    .t { font-size: 13.5px; font-weight: 600; }
+    .s { font-size: 12px; fill: #52514e; }
+    .m { font-size: 12px; fill: #898781; }
+    .cap { font-size: 13px; fill: #52514e; font-style: italic; }
+  </style>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#52514e"/>
+    </marker>
+    <marker id="arrb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect width="920" height="340" fill="#fcfcfb"/>
+
+  <!-- panel 1: sequential -->
+  <rect x="14" y="16" width="284" height="308" rx="10" fill="#ffffff" stroke="#e1e0d9"/>
+  <text x="156" y="44" text-anchor="middle" class="h">Sequential · pipeline</text>
+  <line x1="20" y1="162" x2="38" y2="162" stroke="#64748b" stroke-width="1.8" marker-end="url(#arrb)"/>
+  <rect x="42" y="140" width="64" height="44" rx="8" fill="#e6eff7" stroke="#0056a7"/>
+  <text x="74" y="167" text-anchor="middle" class="t">A</text>
+  <line x1="106" y1="162" x2="122" y2="162" stroke="#52514e" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="126" y="140" width="64" height="44" rx="8" fill="#e6eff7" stroke="#0056a7"/>
+  <text x="158" y="167" text-anchor="middle" class="t">B</text>
+  <line x1="190" y1="162" x2="206" y2="162" stroke="#52514e" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="210" y="140" width="64" height="44" rx="8" fill="#e6eff7" stroke="#0056a7"/>
+  <text x="242" y="167" text-anchor="middle" class="t">C</text>
+  <line x1="274" y1="162" x2="292" y2="162" stroke="#64748b" stroke-width="1.8" marker-end="url(#arrb)"/>
+  <text x="156" y="272" text-anchor="middle" class="m">each stage transforms the previous output</text>
+  <text x="156" y="298" text-anchor="middle" class="cap">wins on: cost, predictability</text>
+
+  <!-- panel 2: hierarchical -->
+  <rect x="318" y="16" width="284" height="308" rx="10" fill="#ffffff" stroke="#e1e0d9"/>
+  <text x="460" y="44" text-anchor="middle" class="h">Hierarchical · supervisor</text>
+  <rect x="385" y="70" width="150" height="40" rx="8" fill="#e6eff7" stroke="#0056a7" stroke-width="1.5"/>
+  <text x="460" y="95" text-anchor="middle" class="t">SUPERVISOR</text>
+  <line x1="418" y1="114" x2="376" y2="164" stroke="#52514e" stroke-width="1.5" marker-start="url(#arr)" marker-end="url(#arr)"/>
+  <line x1="460" y1="114" x2="460" y2="164" stroke="#52514e" stroke-width="1.5" marker-start="url(#arr)" marker-end="url(#arr)"/>
+  <line x1="502" y1="114" x2="544" y2="164" stroke="#52514e" stroke-width="1.5" marker-start="url(#arr)" marker-end="url(#arr)"/>
+  <rect x="334" y="168" width="76" height="48" rx="8" fill="#e6eff7" stroke="#0056a7"/>
+  <text x="372" y="196" text-anchor="middle" class="t">A</text>
+  <rect x="422" y="168" width="76" height="48" rx="8" fill="#e6eff7" stroke="#0056a7"/>
+  <text x="460" y="196" text-anchor="middle" class="t">B</text>
+  <rect x="510" y="168" width="76" height="48" rx="8" fill="#e6eff7" stroke="#0056a7"/>
+  <text x="548" y="196" text-anchor="middle" class="t">C</text>
+  <text x="460" y="272" text-anchor="middle" class="m">delegates, integrates, decides at runtime</text>
+  <text x="460" y="298" text-anchor="middle" class="cap">wins on: quality, flexibility</text>
+
+  <!-- panel 3: consensual -->
+  <rect x="622" y="16" width="284" height="308" rx="10" fill="#ffffff" stroke="#e1e0d9"/>
+  <text x="764" y="44" text-anchor="middle" class="h">Consensual · committee</text>
+  <rect x="640" y="82" width="70" height="40" rx="8" fill="#e6eff7" stroke="#0056a7"/>
+  <text x="675" y="107" text-anchor="middle" class="t">A</text>
+  <rect x="724" y="82" width="70" height="40" rx="8" fill="#e6eff7" stroke="#0056a7"/>
+  <text x="759" y="107" text-anchor="middle" class="t">B</text>
+  <rect x="808" y="82" width="70" height="40" rx="8" fill="#e6eff7" stroke="#0056a7"/>
+  <text x="843" y="107" text-anchor="middle" class="t">C</text>
+  <line x1="675" y1="126" x2="732" y2="166" stroke="#52514e" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="759" y1="126" x2="759" y2="166" stroke="#52514e" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="843" y1="126" x2="786" y2="166" stroke="#52514e" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="689" y="170" width="140" height="40" rx="8" fill="#f0efec" stroke="#52514e"/>
+  <text x="759" y="195" text-anchor="middle" class="t">vote / consensus</text>
+  <line x1="759" y1="214" x2="759" y2="234" stroke="#64748b" stroke-width="1.8" marker-end="url(#arrb)"/>
+  <text x="764" y="272" text-anchor="middle" class="m">peers answer independently, then agree</text>
+  <text x="764" y="298" text-anchor="middle" class="cap">wins on: robustness</text>
+</svg>

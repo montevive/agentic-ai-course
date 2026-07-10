@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 310" role="img">
+  <title>The literature-review pipeline as a LangGraph state graph: research, synthesize, critique, and a conditional edge that either ends or loops back to rewrite</title>
+  <style>
+    text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; fill: #0b0b0b; }
+    .t { font-size: 13.5px; font-weight: 600; }
+    .s { font-size: 12px; fill: #52514e; }
+    .m { font-size: 12px; fill: #898781; }
+    .fail { font-size: 12.5px; font-weight: 600; fill: #e34948; }
+    .code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+    .cap { font-size: 13px; fill: #52514e; font-style: italic; }
+  </style>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#52514e"/>
+    </marker>
+    <marker id="arrr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#e34948"/>
+    </marker>
+  </defs>
+  <rect width="920" height="310" fill="#fcfcfb"/>
+
+  <circle cx="60" cy="120" r="7" fill="#52514e"/>
+  <text x="60" y="146" text-anchor="middle" class="m">START</text>
+  <line x1="67" y1="120" x2="104" y2="120" stroke="#52514e" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <rect x="108" y="95" width="140" height="50" rx="8" fill="#e3f6ee" stroke="#1baf7a"/>
+  <text x="178" y="115" text-anchor="middle" class="t">research</text>
+  <text x="178" y="133" text-anchor="middle" class="s">search_corpus (tool)</text>
+  <line x1="248" y1="120" x2="294" y2="120" stroke="#52514e" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <rect x="298" y="95" width="150" height="50" rx="8" fill="#e6eff7" stroke="#0056a7"/>
+  <text x="373" y="115" text-anchor="middle" class="t">synthesize</text>
+  <text x="373" y="133" text-anchor="middle" class="s">LLM drafts with citations</text>
+  <line x1="448" y1="120" x2="494" y2="120" stroke="#52514e" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <rect x="498" y="95" width="140" height="50" rx="8" fill="#e6eff7" stroke="#0056a7"/>
+  <text x="568" y="115" text-anchor="middle" class="t">critique</text>
+  <text x="568" y="133" text-anchor="middle" class="s">strict LLM reviewer</text>
+  <line x1="638" y1="120" x2="666" y2="120" stroke="#52514e" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <rect x="670" y="95" width="112" height="50" rx="8" fill="#f0efec" stroke="#52514e" stroke-dasharray="5 3"/>
+  <text x="726" y="115" text-anchor="middle" class="t">decide</text>
+  <text x="726" y="133" text-anchor="middle" class="s">conditional edge</text>
+
+  <line x1="782" y1="120" x2="848" y2="120" stroke="#52514e" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="815" y="98" text-anchor="middle" class="m">approved, or</text>
+  <text x="815" y="112" text-anchor="middle" class="m">2 attempts</text>
+  <circle cx="860" cy="120" r="9" fill="none" stroke="#52514e" stroke-width="1.5"/>
+  <circle cx="860" cy="120" r="4.5" fill="#52514e"/>
+  <text x="860" y="146" text-anchor="middle" class="m">END</text>
+
+  <path d="M726,145 L726,200 L373,200 L373,149" fill="none" stroke="#e34948" stroke-width="1.6" marker-end="url(#arrr)"/>
+  <text x="550" y="192" text-anchor="middle" class="fail">REJECTED: back to rewrite</text>
+
+  <rect x="250" y="228" width="420" height="34" rx="8" fill="#fdf3dc" stroke="#eda100"/>
+  <text x="460" y="249" text-anchor="middle" class="code">state: {question, findings, synthesis, verdict, attempts}</text>
+
+  <text x="460" y="292" text-anchor="middle" class="cap">Every step is checkpointed per thread_id: interrupt, resume, audit, time-travel.</text>
+</svg>

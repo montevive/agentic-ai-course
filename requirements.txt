@@ -1,0 +1,37 @@
+# Course "Agentic AI and Multi-Agent Systems" - Fundacion AI Granada
+# Python 3.11+ (3.12 recommended). Installation:
+#   python -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt
+# Versions resolved and verified together on 2026-07-10.
+
+# Agentic frameworks
+pydantic-ai==2.8.0
+smolagents==1.26.0
+openai-agents==0.18.1
+langgraph==1.2.9
+langchain==1.3.12
+langchain-anthropic==1.4.8
+langchain-openai==1.3.4
+crewai==1.15.2
+
+# Model SDKs
+openai==2.45.0
+anthropic==0.116.0
+google-genai==2.11.0
+
+# RAG and memory
+chromadb==1.1.1
+mem0ai==2.0.5
+
+# Protocols and integration (MCP)
+fastmcp==3.4.4
+mcp==1.26.0
+
+# Production: evaluation, profiling and traceability
+nvidia-nat==1.4.3
+langfuse==4.13.2
+
+# Utilities
+python-dotenv==1.2.2
+tiktoken==0.13.0
+rich==14.3.4
+jupyter==1.1.1

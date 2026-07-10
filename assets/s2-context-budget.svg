@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 350" role="img">
+  <title>The context window fills up every turn; the four levers are pruning, compaction, offloading and budgets</title>
+  <style>
+    text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; fill: #0b0b0b; }
+    .h { font-size: 15px; font-weight: 700; }
+    .t { font-size: 13.5px; font-weight: 600; }
+    .s { font-size: 12px; fill: #52514e; }
+    .m { font-size: 12px; fill: #898781; }
+    .lim { font-size: 12px; font-weight: 600; fill: #e34948; }
+    .cap { font-size: 13px; fill: #52514e; font-style: italic; }
+  </style>
+  <rect width="920" height="350" fill="#fcfcfb"/>
+
+  <!-- legend -->
+  <rect x="60" y="22" width="12" height="12" fill="#e6eff7" stroke="#0056a7"/>
+  <text x="78" y="32" class="s">system prompt</text>
+  <rect x="180" y="22" width="12" height="12" fill="#fdf3dc" stroke="#eda100"/>
+  <text x="198" y="32" class="s">past turns</text>
+  <rect x="280" y="22" width="12" height="12" fill="#e3f6ee" stroke="#1baf7a"/>
+  <text x="298" y="32" class="s">tool results</text>
+  <rect x="382" y="22" width="12" height="12" fill="#eef1f5" stroke="#64748b"/>
+  <text x="400" y="32" class="s">new question</text>
+
+  <!-- context limit -->
+  <line x1="50" y1="62" x2="430" y2="62" stroke="#e34948" stroke-width="1.5" stroke-dasharray="7 4"/>
+  <text x="430" y="54" text-anchor="end" class="lim">context limit</text>
+
+  <!-- turn 1: total 52 from y=280 -->
+  <rect x="70" y="252" width="90" height="28" fill="#e6eff7" stroke="#0056a7"/>
+  <rect x="70" y="228" width="90" height="24" fill="#eef1f5" stroke="#64748b"/>
+  <text x="115" y="302" text-anchor="middle" class="m">turn 1</text>
+
+  <!-- turn 2: system 28 + past 40 + tools 36 + question 24 = 128 -->
+  <rect x="190" y="252" width="90" height="28" fill="#e6eff7" stroke="#0056a7"/>
+  <rect x="190" y="212" width="90" height="40" fill="#fdf3dc" stroke="#eda100"/>
+  <rect x="190" y="176" width="90" height="36" fill="#e3f6ee" stroke="#1baf7a"/>
+  <rect x="190" y="152" width="90" height="24" fill="#eef1f5" stroke="#64748b"/>
+  <text x="235" y="302" text-anchor="middle" class="m">turn 2</text>
+
+  <!-- turn 3: system 28 + past 84 + tools 72 + question 24 = 208 -->
+  <rect x="310" y="252" width="90" height="28" fill="#e6eff7" stroke="#0056a7"/>
+  <rect x="310" y="168" width="90" height="84" fill="#fdf3dc" stroke="#eda100"/>
+  <rect x="310" y="96" width="90" height="72" fill="#e3f6ee" stroke="#1baf7a"/>
+  <rect x="310" y="72" width="90" height="24" fill="#eef1f5" stroke="#64748b"/>
+  <text x="355" y="302" text-anchor="middle" class="m">turn 3</text>
+
+  <!-- divider -->
+  <line x1="470" y1="40" x2="470" y2="300" stroke="#e1e0d9"/>
+
+  <!-- the four levers -->
+  <text x="500" y="64" class="h">The four levers</text>
+
+  <rect x="500" y="88" width="11" height="11" fill="#e3f6ee" stroke="#1baf7a"/>
+  <text x="520" y="98" class="t">Pruning</text>
+  <text x="520" y="116" class="s">drop tool results and turns already consumed</text>
+
+  <rect x="500" y="140" width="11" height="11" fill="#fdf3dc" stroke="#eda100"/>
+  <text x="520" y="150" class="t">Compaction</text>
+  <text x="520" y="168" class="s">replace the old history with a short summary</text>
+
+  <rect x="500" y="192" width="11" height="11" fill="#eef1f5" stroke="#64748b"/>
+  <text x="520" y="202" class="t">Offloading</text>
+  <text x="520" y="220" class="s">move facts out to RAG or a memory layer, retrieve on demand</text>
+
+  <rect x="500" y="244" width="11" height="11" fill="#fbe7e7" stroke="#e34948"/>
+  <text x="520" y="254" class="t">Budgets</text>
+  <text x="520" y="272" class="s">hard caps on tokens and steps per task</text>
+
+  <text x="460" y="330" text-anchor="middle" class="cap">Input tokens are billed on every call: an unmanaged history makes total conversation cost grow quadratically.</text>
+</svg>
