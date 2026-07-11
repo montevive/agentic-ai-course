@@ -31,7 +31,7 @@ def search_papers(query: str) -> str:
     top = [(s, n) for s, n in scored[:3] if s > 0]
     if not top:
         return "No results for that query."
-    return "\n\n".join(f"[{name}]\n{CORPUS[name][:700]}" for _, name in top)
+    return "\n\n".join(f"[{name}]\n{CORPUS[name][:900]}" for _, name in top)
 
 
 @mcp.tool
