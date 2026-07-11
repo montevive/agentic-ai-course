@@ -1,0 +1,151 @@
+{
+  "name": "Agent prototype - corpus assistant (Session 1)",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "8b7afb68-d1ec-4ffa-81e5-58d9ca67c2ae",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -144,
+        32
+      ],
+      "webhookId": "a1b2c3d4-0001-4000-8000-00000000000a"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are a research assistant for a corpus of paper abstracts on agentic AI. Use the fetch_paper tool to read papers before answering questions about them, and the calculator for any arithmetic. Cite paper ids like [2403] in your answers."
+        }
+      },
+      "id": "b5e6670c-4338-4584-bde8-0b01571029e3",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        144,
+        32
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "9b396dc9-c47b-4b6a-8fd3-de92d0045772",
+      "name": "Simple Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        176,
+        256
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "80956060-3829-4ea5-a401-d02e95c4397b",
+      "name": "Calculator",
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        336,
+        256
+      ]
+    },
+    {
+      "parameters": {
+        "toolDescription": "Fetch the full abstract of one paper from the course corpus of fictional papers on agentic AI. Available paper_id values (use them exactly as written): 2401-agentic-survey (survey of agentic systems), 2402-react-limits (limits of ReAct), 2403-multiagent-coordination (multi-agent coordination patterns), 2404-rag-scientific (RAG for scientific corpora), 2405-agent-memory (agent memory), 2406-abm-game-theory (agent-based modeling and game theory), 2407-mcp-protocol (MCP protocol), 2408-guardrails-eval (guardrails and evaluation), 2409-reproducible-experiments (reproducible experiments), 2410-teaching-assistant (teaching assistant agents), 2411-context-engineering (context engineering), 2412-a2a-web (A2A and the agentic web).\n\nThe URL format is: https://raw.githubusercontent.com/montevive/agentic-ai-course/main/data/{paper_id}.md",
+        "url": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('URL', ``, 'string') }}",
+        "options": {}
+      },
+      "id": "6ae1a457-2b9b-4175-98f3-dc2c22f8cb09",
+      "name": "fetch_paper",
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        496,
+        256
+      ]
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-haiku-4-5",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.5,
+      "position": [
+        16,
+        240
+      ],
+      "id": "bb6ce15a-df76-4440-a42f-7d5f2bba7535",
+      "name": "Anthropic Chat Model"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "fetch_paper": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  }
+}
