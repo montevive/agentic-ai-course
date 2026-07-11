@@ -19,7 +19,7 @@ Taught by [Montevive AI](https://montevive.ai) · Chema Robles (chema@montevive.
 ## Before the first session
 
 1. Set up the environment (local or Colab, see below).
-2. Get **at least one** API key (Anthropic, OpenAI or Google).
+2. Get an API key: the **course key** for the Montevive LLM proxy (given at the start of the training), or your own provider key (Anthropic, OpenAI or Google).
 3. Run `00-environment-check.ipynb` end to end and check that it shows 🟢.
 
 If anything fails: **chema@montevive.ai**.
@@ -55,17 +55,23 @@ pip install -r requirements.txt
 Use the badges in the table above. In Colab:
 
 - The first cell of each notebook installs the dependencies automatically.
-- Add your keys in the **Secrets** panel (🔑 icon in the sidebar) with the names `ANTHROPIC_API_KEY`, `OPENAI_API_KEY` or `GOOGLE_API_KEY`, and enable "Notebook access".
+- Add your key in the **Secrets** panel (🔑 icon in the sidebar): `LITELLM_API_KEY` with the course key (recommended), or your own `ANTHROPIC_API_KEY` / `OPENAI_API_KEY` / `GOOGLE_API_KEY`. Enable "Notebook access".
 
-## API keys
+## LLM access: the Montevive proxy (recommended)
 
-| Provider | Variable | Console | Notes |
-|---|---|---|---|
-| Anthropic (Claude) | `ANTHROPIC_API_KEY` | [console.anthropic.com](https://console.anthropic.com/) | Recommended as the primary provider in the course |
-| OpenAI | `OPENAI_API_KEY` | [platform.openai.com](https://platform.openai.com/) | Only needed for the OpenAI Agents SDK block |
-| Google (Gemini) | `GOOGLE_API_KEY` | [aistudio.google.com](https://aistudio.google.com/apikey) | A valid alternative in almost every exercise |
+The course runs on the **Montevive LLM proxy** (`llm.montevive.ai`). You get **one** key and set it as `LITELLM_API_KEY`; every notebook then routes all three providers through the proxy automatically — no other change needed, model strings like `anthropic:claude-sonnet-4-6` keep working.
 
-One key is enough to follow the course. The exercises use low-cost models by default (Claude Haiku / Sonnet, GPT mini, Gemini Flash): the estimated spend across the three sessions is under 2-3 EUR. Access will be provided during the training to anyone who needs it.
+Why a proxy: it only allows the course models, so you **can't accidentally run an expensive model**, and it shares one daily budget. This is also a real example of a governance guardrail — model allowlisting, per-key budget and rate limits — the same "secure & governed AI" lens the course applies to compliance in Session 3.
+
+| Cheap (default in exercises) | Mid tier |
+|---|---|
+| `claude-haiku-4-5` | `claude-sonnet-4-6` |
+| `gpt-5-mini` | `gpt-5` |
+| `gemini-flash-latest` | `gemini-pro-latest` |
+
+Any other model returns `403` (intentional). The key is shared by the class: ~20 USD/day budget, 300 req/min, and it expires **2026-07-18**. Prefer the cheap tier and avoid unbounded agent loops. A `429` means wait a few seconds and retry.
+
+**Without the proxy:** leave `LITELLM_API_KEY` empty and set your own provider key instead (`ANTHROPIC_API_KEY` recommended, or `OPENAI_API_KEY` / `GOOGLE_API_KEY`) — the notebooks then call the providers directly. One key is enough; estimated spend across the three sessions is under 2-3 EUR with the default cheap models.
 
 ## Repository structure
 
