@@ -1,0 +1,137 @@
+{
+  "name": "Agent prototype - corpus assistant (Session 1)",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-4000-8000-000000000001",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [0, 0],
+      "webhookId": "a1b2c3d4-0001-4000-8000-00000000000a"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are a research assistant for a corpus of paper abstracts on agentic AI. Use the fetch_paper tool to read papers before answering questions about them, and the calculator for any arithmetic. Cite paper ids like [2403] in your answers."
+        }
+      },
+      "id": "a1b2c3d4-0002-4000-8000-000000000002",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [280, 0]
+    },
+    {
+      "parameters": {
+        "model": "claude-haiku-4-5",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0003-4000-8000-000000000003",
+      "name": "Anthropic Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
+      "position": [160, 220]
+    },
+    {
+      "parameters": {},
+      "id": "a1b2c3d4-0004-4000-8000-000000000004",
+      "name": "Simple Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [320, 220]
+    },
+    {
+      "parameters": {},
+      "id": "a1b2c3d4-0005-4000-8000-000000000005",
+      "name": "Calculator",
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [480, 220]
+    },
+    {
+      "parameters": {
+        "toolDescription": "Fetch the full abstract of one paper from the course corpus of fictional papers on agentic AI. Available paper_id values (use them exactly as written): 2401-agentic-survey (survey of agentic systems), 2402-react-limits (limits of ReAct), 2403-multiagent-coordination (multi-agent coordination patterns), 2404-rag-scientific (RAG for scientific corpora), 2405-agent-memory (agent memory), 2406-abm-game-theory (agent-based modeling and game theory), 2407-mcp-protocol (MCP protocol), 2408-guardrails-eval (guardrails and evaluation), 2409-reproducible-experiments (reproducible experiments), 2410-teaching-assistant (teaching assistant agents), 2411-context-engineering (context engineering), 2412-a2a-web (A2A and the agentic web).",
+        "url": "https://raw.githubusercontent.com/montevive/agentic-ai-course/main/data/{paper_id}.md",
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "paper_id",
+              "description": "Four-digit paper id with its short slug, exactly as the file is named, e.g. 2403-multiagent-coordination",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a1b2c3d4-0006-4000-8000-000000000006",
+      "name": "fetch_paper",
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [640, 220]
+    }
+  ],
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "fetch_paper": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}
