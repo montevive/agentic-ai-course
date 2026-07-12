@@ -97,7 +97,7 @@ Any other model returns `403` (intentional). The key is shared by the class: ~20
 
 | Session | Date | Content |
 |---|---|---|
-| **S1 · Agentic AI Fundamentals** | Mon 13 Jul | From LLM to agent (ReAct, tool use) · anatomy of an agent · live implementation with Pydantic AI and smolagents · contrast with OpenAI Agents SDK · visual prototyping with n8n (importable workflow in `n8n/`) |
+| **S1 · Agentic AI Fundamentals** | Mon 13 Jul | From LLM to agent (ReAct, tool use) · visual prototyping with n8n (importable workflow in `n8n/`) · anatomy of an agent · live implementation with Pydantic AI and smolagents · contrast with OpenAI Agents SDK |
 | **S2 · Multi-Agent Systems** | Tue 14 Jul | Coordination patterns and A2A · CrewAI vs LangGraph vs Microsoft Agent Framework · multi-agent workshop · context engineering, memory (Mem0) and RAG (ChromaDB) |
 | **S3 · Production and Frontiers** | Thu 16 Jul | Model Context Protocol (FastMCP) · Agent Skills (SKILL.md) · guardrails, prompt injection, PII filtering (Presidio) and traceability (Langfuse, NVIDIA NeMo Agent Toolkit) · from guardrails to compliance (GDPR, AI Act, NIS2, ISO 27001) · end-to-end multi-agent pipeline · trends 2026-2027 |
 
