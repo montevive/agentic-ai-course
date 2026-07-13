@@ -22,11 +22,13 @@ google-genai==2.11.0
 chromadb==1.1.1
 mem0ai==2.0.5
 fastembed==0.8.0          # local ONNX embedder for the Mem0 demo (no data leaves the machine)
+rank-bm25==0.2.2          # lexical BM25 ranking for the hybrid search demo (Session 2)
 
-# Protocols and integration (MCP, Agent Skills)
+# Protocols and integration (MCP, Agent Skills, A2A)
 fastmcp==3.4.4
 mcp==1.26.0
 pydantic-ai-skills==1.1.0
+a2a-sdk[http-server]==1.1.0   # Agent2Agent protocol demo (Session 2)
 
 # Production: evaluation, profiling, traceability and PII filtering
 nvidia-nat==1.4.3
