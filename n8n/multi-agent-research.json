@@ -1,0 +1,243 @@
+{
+  "name": "Multi-agent research team - supervisor with agents as tools (Session 2)",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "c1d2e3f4-0002-4000-8000-00000000000a",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -144,
+        32
+      ],
+      "webhookId": "a1b2c3d4-0002-4000-8000-00000000000b"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are the supervisor of a research team. You never search or write yourself: you coordinate two specialists exposed as tools. For any question about the corpus of agentic-AI papers: 1) call researcher_agent to gather findings with paper citations; 2) call writer_agent with those findings to produce the final synthesis; 3) return the writer's synthesis unchanged. If the researcher finds nothing, say so instead of inventing an answer."
+        }
+      },
+      "id": "c1d2e3f4-0002-4000-8000-00000000000c",
+      "name": "Supervisor",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        176,
+        32
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c1d2e3f4-0002-4000-8000-00000000000d",
+      "name": "Simple Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        96,
+        256
+      ]
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-haiku-4-5",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "c1d2e3f4-0002-4000-8000-00000000000e",
+      "name": "Supervisor Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.5,
+      "position": [
+        -64,
+        256
+      ]
+    },
+    {
+      "parameters": {
+        "toolDescription": "Delegate corpus research to the researcher agent. Input: a research question about the corpus of agentic-AI papers. Output: findings with paper citations like [2403-multiagent-coordination].",
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Prompt__User_Message_', ``, 'string') }}",
+        "options": {
+          "systemMessage": "You are a meticulous literature researcher. Use the fetch_paper tool to read papers from the corpus before answering. Return a list of concrete findings, each with its paper identifier in brackets, e.g. [2405-agent-memory]. Only state what is actually in the papers."
+        }
+      },
+      "id": "c1d2e3f4-0002-4000-8000-00000000000f",
+      "name": "researcher_agent",
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 3,
+      "position": [
+        256,
+        256
+      ]
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-haiku-4-5",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "c1d2e3f4-0002-4000-8000-000000000010",
+      "name": "Researcher Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.5,
+      "position": [
+        192,
+        448
+      ]
+    },
+    {
+      "parameters": {
+        "toolDescription": "Fetch the full abstract of one paper from the course corpus of fictional papers on agentic AI. Available paper_id values (use them exactly as written): 2401-agentic-survey (survey of agentic systems), 2402-react-limits (limits of ReAct), 2403-multiagent-coordination (multi-agent coordination patterns), 2404-rag-scientific (RAG for scientific corpora), 2405-agent-memory (agent memory), 2406-abm-game-theory (agent-based modeling and game theory), 2407-mcp-protocol (MCP protocol), 2408-guardrails-eval (guardrails and evaluation), 2409-reproducible-experiments (reproducible experiments), 2410-teaching-assistant (teaching assistant agents), 2411-context-engineering (context engineering), 2412-a2a-web (A2A and the agentic web).\n\nThe URL format is: https://raw.githubusercontent.com/montevive/agentic-ai-course/main/data/{paper_id}.md",
+        "url": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('URL', ``, 'string') }}",
+        "options": {}
+      },
+      "id": "c1d2e3f4-0002-4000-8000-000000000011",
+      "name": "fetch_paper",
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        368,
+        448
+      ]
+    },
+    {
+      "parameters": {
+        "toolDescription": "Delegate the final write-up to the writer agent. Input: the researcher's findings with citations. Output: a synthesis of at most 120 words that keeps the [paper] citations.",
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Prompt__User_Message_', ``, 'string') }}",
+        "options": {
+          "systemMessage": "You are an editor of systematic reviews: clarity, concrete figures and no filler. Write a synthesis of at most 120 words from the findings you receive, keeping the [paper] citations. Do not add claims that are not in the findings."
+        }
+      },
+      "id": "c1d2e3f4-0002-4000-8000-000000000012",
+      "name": "writer_agent",
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 3,
+      "position": [
+        624,
+        256
+      ]
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-haiku-4-5",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "c1d2e3f4-0002-4000-8000-000000000013",
+      "name": "Writer Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.5,
+      "position": [
+        656,
+        448
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Supervisor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Supervisor",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supervisor Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Supervisor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "researcher_agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "Supervisor",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "writer_agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "Supervisor",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Researcher Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "researcher_agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "fetch_paper": {
+      "ai_tool": [
+        [
+          {
+            "node": "researcher_agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Writer Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "writer_agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  }
+}

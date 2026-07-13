@@ -1,8 +1,13 @@
-# n8n workflow: visual prototype of the Session 1 agent
+# n8n workflows: the course agents, visually
 
-`agent-prototype.json` is an importable [n8n](https://n8n.io) workflow that reproduces, with zero code, the agent built by hand in `session-1-agent-fundamentals.ipynb`: a chat-triggered *AI Agent* with an Anthropic model, short-term memory and two tools (a calculator and a `fetch_paper` HTTP tool that reads the course corpus straight from this repository).
+Two importable [n8n](https://n8n.io) workflows that reproduce, with zero code, agents built in the notebooks:
 
-## Run it in 5 minutes
+| File | Session | What it shows |
+|---|---|---|
+| `agent-prototype.json` | 1 | A single agent: chat trigger, Anthropic model, memory, two tools (calculator + `fetch_paper`) |
+| `multi-agent-research.json` | 2 | A multi-agent team: a supervisor agent that delegates to two sub-agents exposed as **AI Agent Tool** nodes |
+
+## Run them in 5 minutes
 
 1. **Open an n8n instance.** Either:
    - [n8n Cloud](https://n8n.io) (free trial), or
@@ -13,15 +18,23 @@
      ```
 
      then open http://localhost:5678.
-2. **Import the workflow.** New workflow → menu (top right) → **Import from File...** → select `agent-prototype.json`.
-3. **Add your Anthropic credential.** Open the *Anthropic Chat Model* node and create a credential with your `ANTHROPIC_API_KEY` (the same one used in the notebooks).
-4. **Chat with it.** Click **Open chat** and try:
+2. **Import the workflow.** New workflow → menu (top right) → **Import from File...** → select the `.json` file.
+3. **Add your Anthropic credential.** Open any *Anthropic Chat Model* node and create a credential with your `ANTHROPIC_API_KEY`. With the **course key**, also set the credential's *Base URL* to `https://llm.montevive.ai` so calls go through the course router. The multi-agent workflow has three model nodes (supervisor, researcher, writer): assign the same credential to all three.
+4. **Chat with it.** Click **Open chat**.
+
+   For the Session 1 agent:
 
    > What does the paper on multi-agent coordination say about which pattern wins on quality? And what is 987654 * 123457?
 
-   Open the execution view to watch the loop: the agent calls `fetch_paper`, reads the abstract, calls `Calculator`, and only then answers — the same ReAct cycle as `run_agent()` in the notebook.
+   For the Session 2 team:
+
+   > What does the corpus say about agent memory layers versus vectorstores?
+
+   Open the execution view to watch the flow. In the multi-agent workflow you'll see the supervisor call `researcher_agent` (which loops on `fetch_paper` with its own model), then `writer_agent`, then return the synthesis - the *agent-as-tool* delegation pattern from Session 2, on one canvas.
 
 ## Node-to-code mapping
+
+Session 1 (`agent-prototype.json`):
 
 | n8n node | In the Session 1 notebook |
 |---|---|
@@ -30,6 +43,17 @@
 | *Anthropic Chat Model* | `client.messages.create(...)` |
 | *Simple Memory* | the `messages` list |
 | *Calculator* / *fetch_paper* | `TOOLS` + `TOOL_FUNCTIONS` |
+
+Session 2 (`multi-agent-research.json`):
+
+| n8n node | In the Session 2 notebook |
+|---|---|
+| *Supervisor* (AI Agent) | the orchestrator agent (Session 3 pipeline uses the same pattern) |
+| *researcher_agent* / *writer_agent* (AI Agent Tool) | specialists exposed as tools: `delegate_research(...)`, `delegate_writing(...)` |
+| each sub-agent's own *Anthropic Chat Model* | one bounded context per specialist |
+| *fetch_paper* inside the researcher | the researcher's `search_corpus` tool |
+
+The **AI Agent Tool** node is what makes single-canvas multi-agent possible: the supervisor keeps control and receives each specialist's answer as a tool result (*agent-as-tool*), as opposed to a *handoff* where the conversation is transferred. Both mechanics are discussed in Session 2, Block 1.
 
 ## When to use which
 
