@@ -77,6 +77,8 @@ Any other model returns `403` (intentional). The key is shared by the class: ~20
 
 ```
 ├── 00-environment-check.ipynb          Environment check (run before S1)
+├── 101-real-world-agent-systems.md     Field guide: 101 real agent systems across 13 domains, fact-checked
+├── 101-open-source-agent-systems.md    Companion: 101 open-source agents you can clone and adapt, API-verified
 ├── session-1-agent-fundamentals.ipynb  From LLM to agent · anatomy · Pydantic AI, smolagents, OpenAI Agents SDK
 ├── session-2-multi-agent-systems.ipynb Coordination · CrewAI vs LangGraph · context, memory and RAG
 ├── session-3-production-mcp.ipynb       MCP · guardrails and traceability · end-to-end pipeline · frontiers
@@ -103,6 +105,8 @@ Any other model returns `403` (intentional). The key is shared by the class: ~20
 | **S1 · Agentic AI Fundamentals** | Mon 13 Jul | From LLM to agent (ReAct, tool use) · visual prototyping with n8n (importable workflow in `n8n/`) · anatomy of an agent · live implementation with Pydantic AI and smolagents · contrast with OpenAI Agents SDK |
 | **S2 · Multi-Agent Systems** | Tue 14 Jul | Coordination patterns and A2A (live demo) · supervisor pattern in n8n (agents as tools) · CrewAI vs LangGraph vs Microsoft Agent Framework · multi-agent workshop · context engineering, memory (Mem0) and RAG (ChromaDB, cosine, hybrid BM25) |
 | **S3 · Production and Frontiers** | Thu 16 Jul | Model Context Protocol (FastMCP) · Agent Skills (SKILL.md) · guardrails, prompt injection, PII filtering (Presidio) and traceability (Langfuse, NVIDIA NeMo Agent Toolkit) · from guardrails to compliance (GDPR, AI Act, NIS2, ISO 27001) · end-to-end multi-agent pipeline · trends 2026-2027 |
+
+Looking for real-world examples? [**101 real-world agent systems**](101-real-world-agent-systems.md) is a fact-checked field guide of production and research agents across 13 domains, mapped to the coordination patterns taught in Session 2. Its companion, [**101 open-source agent systems**](101-open-source-agent-systems.md), lists another 101 agents whose code you can clone and adapt, every repository verified live with stack and star snapshot.
 
 ## About Montevive AI
 
