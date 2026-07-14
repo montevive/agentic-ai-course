@@ -2,7 +2,7 @@
 
 **Course: Agentic AI and Multi-Agent Systems** - Fundacion AI Granada - July 2026
 
-A field guide of 101 real agent systems, compiled and fact-checked for this course (July 2026). Use it to answer the question every project starts with: *has someone already built an agent for a problem like mine?*
+A field guide of 101 real agent systems, compiled and fact-checked for this course (July 2026). Use it to answer the question every project starts with: *has someone already built an agent for a problem like mine?* When the answer is yes and you want to read the code, jump to the companion catalog: [101 open-source agent systems](101-open-source-agent-systems.md).
 
 **What counts as an agent here.** Software where a model autonomously decides and executes multi-step actions against tools or an environment (the Session 1 anatomy: reasoning, perception, memory, tools, environment). Plain chatbots and autocomplete tools are out; so are agent *frameworks* (LangGraph, CrewAI...), which are covered in the sessions themselves.
 
