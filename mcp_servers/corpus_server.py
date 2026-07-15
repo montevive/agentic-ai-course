@@ -49,5 +49,22 @@ def list_papers() -> str:
     return "\n".join(sorted(CORPUS))
 
 
+@mcp.resource("papers://{paper_id}")
+def paper_resource(paper_id: str) -> str:
+    """Expose each paper as a readable resource (papers://2405-agent-memory)."""
+    return CORPUS.get(paper_id, f"Unknown paper: {paper_id}")
+
+
+@mcp.prompt
+def literature_review(topic: str) -> str:
+    """Reusable prompt template: a cited mini literature review on a topic."""
+    return (
+        f"Write a short literature review on '{topic}' using ONLY the corpus.\n"
+        "1. Call search_papers to find the relevant papers.\n"
+        "2. Call read_paper on the most relevant ones.\n"
+        "3. Answer in under 150 words, citing every claim like [2405-agent-memory]."
+    )
+
+
 if __name__ == "__main__":
     mcp.run()
